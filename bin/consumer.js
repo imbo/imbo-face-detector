@@ -75,7 +75,7 @@ function onMessageReceived(msg) {
     }
 
     var body = parseJson(msg.content.toString());
-    if (!body) {
+    if (!body || config.imbo.events.indexOf(body.eventName) === -1) {
         return;
     }
 

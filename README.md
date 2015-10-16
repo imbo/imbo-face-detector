@@ -73,7 +73,8 @@ Should you instead want to use a configuration file, simply create a JSON file w
         "host": "http://imbo",
         "port": 80,
         "publicKey": "face-detect",
-        "privateKey": "face-detect-private-key"
+        "privateKey": "face-detect-private-key",
+        "events": ["images.post"]
     },
     "detection": {
         "imageWidth": 1024,
