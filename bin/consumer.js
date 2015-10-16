@@ -136,7 +136,7 @@ function onFacesDetected(err, message, faces) {
     // Update the metadata in Imbo
     imboClient.user(message.image.user).editMetadata(
         message.image.identifier,
-        { poi: unique(pois, hashPoi) },
+        { poi: unique(pois, hashPoi).sort(sortBySize) },
         onMetadataUpdated
     );
 }
@@ -153,6 +153,17 @@ function onMetadataUpdated(err) {
     }
 
     log('Metadata updated', 'info');
+}
+
+/**
+ * Sort points of interest by size, descending
+ *
+ * @param {Object} a
+ * @param {Object} b
+ * @return {Number}
+ */
+function sortBySize(a, b) {
+    return (b.width * b.height) - (a.width * a.height);
 }
 
 /**
