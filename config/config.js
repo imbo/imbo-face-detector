@@ -21,5 +21,12 @@ module.exports = {
 
     consumption: {
         noAck: true
+    },
+
+    imbo: {
+        host: process.ENV.IMBO_HOST || 'imbo',
+        port: process.ENV.IMBO_PORT || 80,
+        publicKey: process.ENV.IMBO_PUBLICKEY || 'publickey',
+        privateKey: process.ENV.IMBO_PUBLICKEY || 'privkey'
     }
 };
