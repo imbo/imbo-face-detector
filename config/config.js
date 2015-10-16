@@ -1,23 +1,35 @@
 'use strict';
 
+var fs = require('fs');
 var path = require('path');
+var merge = require('lodash.merge');
+var minimist = require('minimist');
 
-function boolify(envVar, defaultVal) {
-    var value = process.env[envVar];
-    if (typeof value === 'undefined') {
-        return defaultVal;
-    }
+var argv = minimist(process.argv.slice(2));
+var config = {};
 
-    if (value === '1' || value === '') {
-        return true;
-    } else if (value === '0') {
-        return false;
-    }
-
-    return defaultVal;
+// Show the help/usage info if told to
+if (argv.help) {
+    console.log('Usage: imbo-face-detector --config=<configuration.json>\n');
+    console.log('See README for details on configuration file format\n');
+    process.exit(0);
 }
 
-module.exports = {
+// Load the configuration file if one is specified
+if (argv.config) {
+    try {
+        fs.statSync(argv.config);
+        config = JSON.parse(fs.readFileSync(argv.config));
+    } catch (e) {
+        if (e.code === 'ENOENT') {
+            throw new Error('Configuration file "' + argv.config + '" not found');
+        } else if (e.message.indexOf('Syntax')) {
+            throw new Error('Configuration file "' + argv.config + '" is not valid JSON');
+        }
+    }
+}
+
+module.exports = merge({
     amqp: {
         host: process.env.AMQP_HOST || 'localhost',
         port: process.env.AMQP_PORT || 5672,
@@ -45,7 +57,7 @@ module.exports = {
         host: process.env.IMBO_HOST || 'http://imbo',
         port: process.env.IMBO_PORT || 80,
         publicKey: process.env.IMBO_PUBLICKEY || 'face-detect',
-        privateKey: process.env.IMBO_PUBLICKEY || 'zEKjL0f9XLyPrMkGcs_621RrDQi7KekbduCXsbFHTWs'
+        privateKey: process.env.IMBO_PUBLICKEY || 'face-detect-private-key'
     },
 
     detection: {
@@ -58,4 +70,19 @@ module.exports = {
             ))
         )
     }
-};
+}, config);
+
+function boolify(envVar, defaultVal) {
+    var value = process.env[envVar];
+    if (typeof value === 'undefined') {
+        return defaultVal;
+    }
+
+    if (value === '1' || value === '') {
+        return true;
+    } else if (value === '0') {
+        return false;
+    }
+
+    return defaultVal;
+}

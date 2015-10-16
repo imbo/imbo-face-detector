@@ -16,7 +16,7 @@ sudo apt-get install libopencv-dev
 
 ## Configuration
 
-The configuration of the application is done by setting environment variables. All the different variables are described below.
+The configuration of the application is done either by setting environment variables or specifying a path to a configuration file. All the different variables are described below.
 
 ## Environment variables
 
@@ -30,7 +30,7 @@ The configuration of the application is done by setting environment variables. A
 - `IMBO_HOST` - Hostname of the Imbo server. Default: `http://imbo`
 - `IMBO_PORT` - Port number of the Imbo server. Default: `80`
 - `IMBO_PUBLICKEY` - Public key to use for retrieving images and updating metadata. Default: `face-detect`
-- `IMBO_PRIVATEKEY` - Private key that belongs to the public key specified. Default: `zEKjL0f9XLyPrMkGcs_621RrDQi7KekbduCXsbFHTWs`
+- `IMBO_PRIVATEKEY` - Private key that belongs to the public key specified. Default: `face-detect-private-key`
 
 ### AMQP
 
@@ -44,6 +44,43 @@ The configuration of the application is done by setting environment variables. A
 - `AMQP_ROUTING_KEY` - Routing key to specify for queue. Default: ``
 - `AMQP_EXCHANGE` - Name of exchange to use. Default: `imbo`
 - `AMQP_NOACK` - Whether or not to use `noAck` mode for messages. Default: `true`
+
+## Configuration file
+
+Should you instead want to use a configuration file, simply create a JSON file with any or all of the options below. The configuration will be recursively merged with the default values.
+
+```json
+{
+    "amqp": {
+        "host": "localhost",
+        "port": 5672,
+        "user": "guest",
+        "password": "guest",
+        "vhost": "/"
+    },
+    "queue": {
+        "name": "",
+        "exclusive": true,
+        "routingKey": ""
+    },
+    "exchange": {
+        "name": "imbo"
+    },
+    "consumption": {
+        "noAck": true
+    },
+    "imbo": {
+        "host": "http://imbo",
+        "port": 80,
+        "publicKey": "face-detect",
+        "privateKey": "face-detect-private-key"
+    },
+    "detection": {
+        "imageWidth": 1024,
+        "classifier": "./node_modules/opencv/data/haarcascade_frontalface_alt_tree.xml"
+    }
+}
+```
 
 ## License
 
