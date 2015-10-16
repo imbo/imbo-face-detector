@@ -1,3 +1,7 @@
 {
-    "extends": "vaffel"
+    "extends": "vaffel",
+
+    "rules": {
+        "no-console": 0
+    }
 }
