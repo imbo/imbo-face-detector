@@ -4,4 +4,6 @@ node_js:
   - "0.12"
 services:
   - rabbitmq
-sudo: false
+before_install:
+  - sudo apt-get install opencv-dev
+
