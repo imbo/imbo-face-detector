@@ -1,0 +1,23 @@
+{
+  "name": "imbo-face-detector",
+  "description": "Face detector plugin to be used with Imbo",
+  "version": "1.0.0",
+  "contributors": [{
+    "name": "Kristoffer Brabrand",
+    "email": "kristoffer@brabrand.no"
+  }, {
+    "name": "Espen Hovlandsdal",
+    "email": "espen@hovlandsdal.com"
+  }],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "imbo",
+    "opencv",
+    "face",
+    "detection"
+  ],
+  "license": "MIT"
+}
