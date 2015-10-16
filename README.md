@@ -4,9 +4,9 @@ OpenCV based face detection for Imbo. It listens on an AMQP queue for relevant e
 
 ## Installation
 
-In order to use the Imbo face detector you must have an Imbo installation, with the [AMQP publisher](https://github.com/imbo/imbo-amqp-publisher) enabled.
+In order to use the Imbo face detector you must have an Imbo installation, with the [AMQP publisher](https://github.com/imbo/imbo-amqp-publisher) enabled and set up to publish messages for the `images.post` event.
 
-You will public/private keypair with access to `images.get` and `metadata.post` on all users on the installation.
+You will need a public/private keypair with access to `image.get` and `metadata.post` on all users of the installation.
 
 For the actual face detection to take place, you will need to have [OpenCV](http://opencv.org). On Ubuntu/Debian/Mint (and so on) the following is usually enough:
 
@@ -47,7 +47,7 @@ The configuration of the application is done either by setting environment varia
 
 ## Configuration file
 
-Should you instead want to use a configuration file, simply create a JSON file with any or all of the options below. The configuration will be recursively merged with the default values.
+Should you instead want to use a configuration file, simply create a JSON file with any or all of the options below, and specify the path to the file with the `--config` option. The configuration will be recursively merged with the default values.
 
 ```json
 {
