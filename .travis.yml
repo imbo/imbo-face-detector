@@ -5,5 +5,4 @@ node_js:
 services:
   - rabbitmq
 before_install:
-  - sudo apt-get install opencv-dev
-
+  - sudo apt-get install libopencv-dev
