@@ -10,7 +10,8 @@ module.exports = {
     },
 
     queue: {
-        name: '', // Leave blank to auto-generate
+        // Leave `name` blank to auto-generate
+        name: '',
         exclusive: true,
         routingKey: ''
     },
@@ -24,9 +25,13 @@ module.exports = {
     },
 
     imbo: {
-        host: process.ENV.IMBO_HOST || 'imbo',
-        port: process.ENV.IMBO_PORT || 80,
-        publicKey: process.ENV.IMBO_PUBLICKEY || 'publickey',
-        privateKey: process.ENV.IMBO_PUBLICKEY || 'privkey'
+        host: process.env.IMBO_HOST || 'http://imbo',
+        port: process.env.IMBO_PORT || 80,
+        publicKey: process.env.IMBO_PUBLICKEY || 'publickey',
+        privateKey: process.env.IMBO_PUBLICKEY || 'privatekey'
+    },
+
+    detection: {
+        imageWidth: 924
     }
 };
