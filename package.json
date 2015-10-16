@@ -12,10 +12,14 @@
       "email": "espen@hovlandsdal.com"
     }
   ],
-  "main": "index.js",
+  "main": "bin/consumer.js",
   "scripts": {
+    "start": "./bin/consumer.js",
     "test": "npm run lint",
     "lint": "eslint ."
+  },
+  "bin": {
+    "imbo-face-detector" : "./bin/consumer.js"
   },
   "keywords": [
     "imbo",

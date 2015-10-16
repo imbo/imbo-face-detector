@@ -1,9 +1,10 @@
+#!/usr/bin/env node
 'use strict';
 
 var amqpClient = require('amqplib/callback_api');
-var detectFaces = require('./detect-faces');
+var detectFaces = require('../lib/detect-faces');
 var config = require('../config/config');
-var imboClient = require('./imbo-client');
+var imboClient = require('../lib/imbo-client');
 var unique = require('lodash.uniq');
 
 // Variables that are changed during the setup process
