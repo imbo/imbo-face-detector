@@ -58,7 +58,7 @@ module.exports = merge({
         port: process.env.IMBO_PORT || 80,
         publicKey: process.env.IMBO_PUBLICKEY || 'face-detect',
         privateKey: process.env.IMBO_PUBLICKEY || 'face-detect-private-key',
-        events: ['images.post'],
+        events: ['images.post']
     },
 
     detection: {
