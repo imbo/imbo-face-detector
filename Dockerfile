@@ -1,9 +1,16 @@
-FROM schickling/opencv:latest
+FROM ubuntu:14.04
 MAINTAINER Kristoffer Brabrand <kristoffer@brabrand.no>
 
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update && apt-get install -y software-properties-common
+RUN add-apt-repository -y ppa:kubuntu-ppa/backports
+
+# Install Node.js 0.12
+RUN apt-get update -qq && apt-get install -y curl build-essential
 RUN curl --silent --location https://deb.nodesource.com/setup_0.12 | bash -
 RUN apt-get install -y nodejs
+
+# Install OpenCV
+RUN apt-get install --force-yes -y libcv-dev libcvaux-dev libhighgui-dev libopencv-dev
 
 # Exclude npm cache from the image
 VOLUME /root/.npm
@@ -17,4 +24,4 @@ COPY . /app
 WORKDIR /app
 
 # Start application
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]
