@@ -15,7 +15,8 @@
   "main": "bin/consumer.js",
   "scripts": {
     "start": "./bin/consumer.js",
-    "test": "npm run lint",
+    "pretest": "npm run lint",
+    "test": "istanbul cover _mocha",
     "lint": "eslint ."
   },
   "bin": {
@@ -30,7 +31,9 @@
   "license": "MIT",
   "devDependencies": {
     "eslint": "^1.6.0",
-    "eslint-config-vaffel": "^2.0.0"
+    "eslint-config-vaffel": "^2.0.0",
+    "istanbul": "^0.4.0",
+    "mocha": "^2.3.3"
   },
   "dependencies": {
     "amqplib": "^0.4.0",
