@@ -45,6 +45,10 @@ The configuration of the application is done either by setting environment varia
 - `AMQP_EXCHANGE` - Name of exchange to use. Default: `imbo`
 - `AMQP_NOACK` - Whether or not to use `noAck` mode for messages. Default: `true`
 
+### Health check
+
+- `HTTP_PORT` - Port for health check server. Default: `8888`
+
 ## Configuration file
 
 Should you instead want to use a configuration file, simply create a JSON file with any or all of the options below, and specify the path to the file with the `--config` option. The configuration will be recursively merged with the default values.
