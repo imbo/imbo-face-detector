@@ -17,7 +17,9 @@
     "start": "./bin/consumer.js",
     "pretest": "npm run lint",
     "test": "istanbul cover _mocha",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "docker:build": "docker build -t imbo/face-detector .",
+    "docker:push": "docker push imbo/face-detector"
   },
   "bin": {
     "imbo-face-detector": "./bin/consumer.js"
