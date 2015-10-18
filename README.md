@@ -43,6 +43,9 @@ The configuration of the application is done either by setting environment varia
 - `AMQP_EXCLUSIVE` - Whether or not to use exclusive queue. Default: `true`
 - `AMQP_ROUTING_KEY` - Routing key to specify for queue. Default: ``
 - `AMQP_EXCHANGE` - Name of exchange to use. Default: `imbo`
+- `AMQP_EXCHANGE_TYPE` - Type of exchange to use. Default: `fanout`
+- `AMQP_EXCHANGE_DURABLE` - Whether or not the exchange should be durable. Default: `false`
+- `AMQP_EXCHANGE_AUTODELETE` - Whether or not the exchange should auto-delete when there are no queues. Default: `false`
 - `AMQP_NOACK` - Whether or not to use `noAck` mode for messages. Default: `true`
 
 ### Health check

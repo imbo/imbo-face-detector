@@ -46,7 +46,10 @@ module.exports = merge({
     },
 
     exchange: {
-        name: process.env.AMQP_EXCHANGE || 'imbo'
+        name: process.env.AMQP_EXCHANGE || 'imbo',
+        type: process.env.AMQP_EXCHANGE_TYPE || 'fanout',
+        durable: boolify('AMQP_EXCHANGE_DURABLE', false),
+        autoDelete: boolify('AMQP_EXCHANGE_AUTODELETE', false)
     },
 
     consumption: {
