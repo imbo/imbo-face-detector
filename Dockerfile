@@ -23,5 +23,8 @@ RUN cd /app && npm install
 COPY . /app
 WORKDIR /app
 
+# Expose health check port
+EXPOSE 8888 8888
+
 # Start application
 CMD ["npm", "start"]

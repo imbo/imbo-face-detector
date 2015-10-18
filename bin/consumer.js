@@ -1,11 +1,26 @@
 #!/usr/bin/env node
 'use strict';
 
+var http = require('http');
+
 var amqpClient = require('amqplib/callback_api');
 var detectFaces = require('../lib/detect-faces');
 var config = require('../config/config');
 var imboClient = require('../lib/imbo-client');
 var unique = require('lodash.uniq');
+
+// Set up http server for healt checks
+var healthCheckPort = process.env.HTTP_PORT || 8888;
+
+http.createServer(function(req, res) {
+    if (req.url !== '/status') {
+        res.writeHead(404);
+    }
+
+    return res.end('');
+}).listen(healthCheckPort);
+
+log('Healt check server listening on port ' + healthCheckPort);
 
 // Variables that are changed during the setup process
 var channel, queueName;
