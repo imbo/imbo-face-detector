@@ -94,6 +94,33 @@ Should you instead want to use a configuration file, simply create a JSON file w
 }
 ```
 
+## Building the docker image
+In order to build and push the official `imbo/face-detector` image your user need to have push access to the imbo organization on the docker hub. You can of course build it and push it somewhere else without access. For the official docker image however, the process is as follows:
+
+```sh
+$ npm run docker:build
+```
+
+The docker image will be built with the `latest` tag and you should tag it with something appropriate in addition to that. In order to find the image id:
+
+```sh
+$ docker images
+REPOSITORY          TAG     IMAGE ID      CREATED            VIRTUAL SIZE
+imbo/face-detector  latest  82afe0d63bed  About an hour ago  878.9 MB
+```
+
+Then tag this image with something sensible (1.2 as an example):
+
+```sh
+docker tag 82afe0d63bed imbo/face-detector:1.2
+```
+
+And now, the only thing left is pushing it to the docker hub to make it publicly available:
+
+```sh
+npm run docker:push
+```
+
 ## License
 
 Copyright (c) 2015, [Kristoffer Brabrand](mailto:kristoffer@brabrand.no) and [Espen Hovlandsdal](mailto:espen@hovlandsdal.com).
