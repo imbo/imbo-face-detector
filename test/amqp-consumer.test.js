@@ -1,7 +1,5 @@
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
 var assert = require('assert');
 var mocha = require('mocha');
 var merge = require('lodash.merge');
@@ -9,8 +7,6 @@ var amqpConsumer = require('../lib/amqp-consumer');
 
 var it = mocha.it;
 var describe = mocha.describe;
-var imageWidth = 1024;
-var testImage = fs.readFileSync(path.join(__dirname, 'fixtures', 'test.jpg'));
 var randomQueueName = 'queue-' + Date.now();
 
 describe('#amqp-consumer()', function() {
@@ -18,7 +14,7 @@ describe('#amqp-consumer()', function() {
         getClient({
             amqp: { host: 'foo', port: 31337, user: 'user', password: 'pass', vhost: '/zing' }
         }, {
-            connect: function(dsn, cb) {
+            connect: function(dsn) {
                 assert.equal(dsn, 'amqp://user:pass@foo:31337/zing');
                 done();
             }
@@ -41,8 +37,8 @@ describe('#amqp-consumer()', function() {
         getClient({}, {
             connect: function(dsn, cb) {
                 setImmediate(cb, null, {
-                    createChannel: function(cb) {
-                        setImmediate(cb, new Error('Channel init failed'));
+                    createChannel: function(callback) {
+                        setImmediate(callback, new Error('Channel init failed'));
                     }
                 });
             }
@@ -174,9 +170,9 @@ describe('#amqp-consumer()', function() {
                     });
                 }
             }
-        }).on('error', function(err) {
+        }).on('error', function() {
             assert.fail('error', 'null', '`error` should not be emitted if message is empty');
-        }).on('message', function(msg) {
+        }).on('message', function() {
             assert.fail('message', 'null', '`message` should not be emitted if message is empty');
         });
     });
@@ -194,7 +190,7 @@ describe('#amqp-consumer()', function() {
         }).on('error', function(err) {
             assert(err && err.message.indexOf('Syntax'));
             done();
-        }).on('message', function(msg) {
+        }).on('message', function() {
             assert.fail('message', 'null', '`message` should not be emitted if message is invalid');
         });
     });
@@ -244,8 +240,8 @@ function getClientMock(channelMocks) {
     var mocks = {
         connect: function(dsn, cb) {
             setImmediate(cb, null, {
-                createChannel: function(cb) {
-                    setImmediate(cb, null, chanMocks);
+                createChannel: function(callback) {
+                    setImmediate(callback, null, chanMocks);
                 }
             });
         }
