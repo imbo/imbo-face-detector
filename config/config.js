@@ -46,7 +46,10 @@ module.exports = merge({
     },
 
     exchange: {
-        name: process.env.AMQP_EXCHANGE || 'imbo'
+        name: process.env.AMQP_EXCHANGE || 'imbo',
+        type: process.env.AMQP_EXCHANGE_TYPE || 'fanout',
+        durable: boolify('AMQP_EXCHANGE_DURABLE', false),
+        autoDelete: boolify('AMQP_EXCHANGE_AUTODELETE', false)
     },
 
     consumption: {
@@ -70,6 +73,14 @@ module.exports = merge({
                 'data', 'haarcascade_frontalface_alt_tree.xml'
             ))
         )
+    },
+
+    logging: {
+        level: process.env.LOG_LEVEL || 'trace'
+    },
+
+    healthCheck: {
+        port: process.env.HTTP_PORT || 8888
     }
 }, config);
 
