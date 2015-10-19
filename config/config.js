@@ -77,6 +77,10 @@ module.exports = merge({
 
     logging: {
         level: process.env.LOG_LEVEL || 'trace'
+    },
+
+    healthCheck: {
+        port: process.env.HTTP_PORT || 8888
     }
 }, config);
 

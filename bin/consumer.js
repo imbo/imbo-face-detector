@@ -2,10 +2,14 @@
 'use strict';
 
 var bunyan = require('bunyan');
+var merge = require('lodash.merge');
 var config = require('../config/config');
 var amqpConsumer = require('../lib/amqp-consumer');
 var getMessageHandler = require('../lib/message-handler');
 var imboClient = require('../lib/imbo-client');
+var healthCheck = require('../lib/health-check');
+
+var consumer = amqpConsumer();
 
 var logger = bunyan.createLogger({
     name: 'imbo-face-detector',
@@ -19,6 +23,8 @@ var handleMessage = getMessageHandler({
     log: logger
 });
 
-amqpConsumer()
+healthCheck(merge({ log: logger }, config));
+
+consumer
     .on('message', handleMessage)
     .on('error', logger.error.bind(logger));
