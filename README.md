@@ -96,6 +96,6 @@ Should you instead want to use a configuration file, simply create a JSON file w
 
 ## License
 
-Copyright (c) 2015, [Kristoffer Brabrandand](mailto:kristoffer@brabrand.no) and [Espen Hovlandsdal](mailto:espen@hovlandsdal.com).
+Copyright (c) 2015, [Kristoffer Brabrand](mailto:kristoffer@brabrand.no) and [Espen Hovlandsdal](mailto:espen@hovlandsdal.com).
 
 Licensed under the MIT License
