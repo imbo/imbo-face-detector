@@ -43,8 +43,8 @@ The configuration of the application is done either by setting environment varia
 - `AMQP_USER` - Username for the AMQP server. Default: `guest`
 - `AMQP_PASSWORD` - Password for the AMQP server. Default: `guest`
 - `AMQP_VHOST` - vhost to use. Default: `/`
-- `AMQP_QUEUE` - Name of queue to use. Leave blank to auto-generate. Default: ``
-- `AMQP_EXCLUSIVE` - Whether or not to use exclusive queue. Default: `true`
+- `AMQP_QUEUE` - Name of queue to use. Leave blank to auto-generate. Default: `face-detect`
+- `AMQP_EXCLUSIVE` - Whether or not to use exclusive queue. Default: `false`
 - `AMQP_ROUTING_KEY` - Routing key to specify for queue. Default: ``
 - `AMQP_EXCHANGE` - Name of exchange to use. Default: `imbo`
 - `AMQP_EXCHANGE_TYPE` - Type of exchange to use. Default: `fanout`
