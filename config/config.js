@@ -40,8 +40,8 @@ module.exports = merge({
 
     queue: {
         // Leave `name` blank to auto-generate
-        name: process.env.AMQP_QUEUE || '',
-        exclusive: boolify('AMQP_EXCLUSIVE', true),
+        name: process.env.AMQP_QUEUE || 'face-detect',
+        exclusive: boolify('AMQP_EXCLUSIVE', false),
         routingKey: process.env.ROUTING_KEY || ''
     },
 
