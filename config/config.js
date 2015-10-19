@@ -73,6 +73,10 @@ module.exports = merge({
                 'data', 'haarcascade_frontalface_alt_tree.xml'
             ))
         )
+    },
+
+    logging: {
+        level: process.env.LOG_LEVEL || 'trace'
     }
 }, config);
 

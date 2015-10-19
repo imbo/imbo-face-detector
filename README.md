@@ -20,6 +20,10 @@ The configuration of the application is done either by setting environment varia
 
 ## Environment variables
 
+### Consumer
+
+- `LOG_LEVEL` - Level of messages that should be logged. Possible values: `fatal`, `error`, `warn`, `info`, `debug`, `trace`. Default: `trace`
+
 ### Detector
 
 - `DETECTOR_CLASSIFIER` - Full file path to the classifier to use for detecting faces. Default: `node_modules/opencv/data/haarcascade_frontalface_alt_tree.xml`

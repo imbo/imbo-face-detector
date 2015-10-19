@@ -7,18 +7,18 @@ var amqpConsumer = require('../lib/amqp-consumer');
 var getMessageHandler = require('../lib/message-handler');
 var imboClient = require('../lib/imbo-client');
 
+var logger = bunyan.createLogger({
+    name: 'imbo-face-detector',
+    level: config.logging.level
+});
+
 var handleMessage = getMessageHandler({
     imboClient: imboClient,
     events: config.imbo.events,
     imageWidth: config.detection.imageWidth,
-    log: bunyan.createLogger({ name: 'imbo-face-detector', level: 'trace' })
+    log: logger
 });
 
-amqpConsumer(function(err) {
-    // Throw on initialization errors
-    if (err) {
-        throw err;
-    }
-}).on('message', handleMessage).on('error', function(err) {
-    console.error(err);
-});
+amqpConsumer()
+    .on('message', handleMessage)
+    .on('error', logger.error.bind(logger));
