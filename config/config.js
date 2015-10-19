@@ -60,7 +60,7 @@ module.exports = merge({
         host: process.env.IMBO_HOST || 'http://imbo',
         port: process.env.IMBO_PORT || 80,
         publicKey: process.env.IMBO_PUBLICKEY || 'face-detect',
-        privateKey: process.env.IMBO_PUBLICKEY || 'face-detect-private-key',
+        privateKey: process.env.IMBO_PRIVATEKEY || 'face-detect-private-key',
         events: ['images.post']
     },
 
