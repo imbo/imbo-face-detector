@@ -21,6 +21,10 @@
     "docker:build": "docker build -t imbo/face-detector .",
     "docker:push": "docker push imbo/face-detector"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/imbo/imbo-face-detector.git"
+  },
   "bin": {
     "imbo-face-detector": "./bin/consumer.js"
   },
