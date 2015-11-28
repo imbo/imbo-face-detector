@@ -1,6 +1,6 @@
 # Imbo face detector
 
-OpenCV based face detection for Imbo. It listens on an AMQP queue for relevant events to act on, performs face detection and sets the detected point of interests as metadata on the image in Imbo.
+OpenCV based face detection for Imbo, written in Node.JS. It listens on an AMQP queue for relevant events to act on, performs face detection and sets the detected point of interests as metadata on the image in Imbo.
 
 ## Installation
 
