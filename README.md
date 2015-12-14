@@ -71,11 +71,17 @@ Should you instead want to use a configuration file, simply create a JSON file w
     },
     "queue": {
         "name": "",
-        "exclusive": true,
-        "routingKey": ""
+        "routingKey": "",
+        "options": {
+            "exclusive": true
+        }
     },
     "exchange": {
-        "name": "imbo"
+        "name": "imbo",
+        "type": "fanout",
+        "options": {
+            "durable": true,
+        }
     },
     "consumption": {
         "noAck": true

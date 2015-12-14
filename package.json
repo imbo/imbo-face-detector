@@ -15,7 +15,7 @@
   "main": "bin/consumer.js",
   "scripts": {
     "start": "./bin/consumer.js",
-    "pretest": "npm run lint",
+    "posttest": "npm run lint",
     "test": "istanbul cover _mocha",
     "lint": "eslint .",
     "docker:build": "docker build -t imbo/face-detector .",
@@ -39,11 +39,12 @@
     "eslint": "^1.6.0",
     "eslint-config-vaffel": "^2.0.0",
     "istanbul": "^0.4.0",
-    "mocha": "^2.3.3"
+    "mocha": "^2.3.3",
+    "proxyquire": "^1.7.3"
   },
   "dependencies": {
-    "amqplib": "^0.4.0",
     "bunyan": "^1.5.1",
+    "gleipnir": "^1.1.0",
     "imboclient": "^3.0.0",
     "lodash.merge": "^3.3.2",
     "lodash.uniq": "^3.2.2",
