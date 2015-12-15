@@ -64,6 +64,7 @@ Should you instead want to use a configuration file, simply create a JSON file w
 ```json
 {
     "amqp": {
+        "protocol": "amqp",
         "host": "localhost",
         "port": 5672,
         "user": "guest",
