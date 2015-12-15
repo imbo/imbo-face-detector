@@ -31,6 +31,7 @@ if (argv.config) {
 
 module.exports = merge({
     amqp: {
+        protocol: process.env.AMQP_PROTOCOL || 'amqp',
         host: process.env.AMQP_HOST || 'localhost',
         port: process.env.AMQP_PORT || 5672,
         user: process.env.AMQP_USER || 'guest',

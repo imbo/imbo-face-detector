@@ -38,6 +38,7 @@ The configuration of the application is done either by setting environment varia
 
 ### AMQP
 
+- `AMQP_PROTOCOL` - Protocol for communicating with AMQP server. Default: `amqp`
 - `AMQP_HOST` - Hostname of the AMQP server. Default: `localhost`
 - `AMQP_PORT` - Port of the AMQP server. Default: `5672`
 - `AMQP_USER` - Username for the AMQP server. Default: `guest`
@@ -126,6 +127,10 @@ And now, the only thing left is pushing it to the docker hub to make it publicly
 ```sh
 npm run docker:push
 ```
+
+## Testing
+
+You can publish messages to the queue during testing by running the `imbo-face-publish` script that is included when you install this globally (or run `node bin/publish.js` manually). Use the `--user` and `--identifier` flags to specify a user and image identifier to use. Other options are read from environment variables or configuration, as with the consumer script.
 
 ## License
 
