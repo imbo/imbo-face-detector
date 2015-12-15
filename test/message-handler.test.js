@@ -92,6 +92,22 @@ describe('#message-handler()', function() {
         });
     });
 
+    it('should log on unhandled users', function(done) {
+        var onMessage = getHandler({
+            onLog: function(level, msg) {
+                assert.equal(level, 'trace');
+                assert(msg.indexOf('zing') !== -1);
+                done();
+            },
+            users: ['foo']
+        });
+
+        onMessage({
+            eventName: 'images.post',
+            image: { user: 'zing' }
+        });
+    });
+
     it('should log any face detection error', function(done) {
         var onMessage = getHandler({
             detectFaces: function(img, cb) {
@@ -267,6 +283,7 @@ function getHandler(opts) {
         events: ['images.post'],
         imboClient: imboClient,
         imageWidth: opts.imageWidth,
+        users: opts.users || '*',
         log: log,
         detectFaces: opts.detectFaces || function(img, cb) {
             setImmediate(cb, null, []);
