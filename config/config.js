@@ -31,6 +31,7 @@ if (argv.config) {
 
 module.exports = merge({
     amqp: {
+        protocol: process.env.AMQP_PROTOCOL || 'amqp',
         host: process.env.AMQP_HOST || 'localhost',
         port: process.env.AMQP_PORT || 5672,
         user: process.env.AMQP_USER || 'guest',
@@ -41,15 +42,19 @@ module.exports = merge({
     queue: {
         // Leave `name` blank to auto-generate
         name: process.env.AMQP_QUEUE || 'face-detect',
-        exclusive: boolify('AMQP_EXCLUSIVE', false),
-        routingKey: process.env.ROUTING_KEY || ''
+        routingKey: process.env.ROUTING_KEY || '',
+        options: {
+            exclusive: boolify('AMQP_EXCLUSIVE', false)
+        }
     },
 
     exchange: {
         name: process.env.AMQP_EXCHANGE || 'imbo',
         type: process.env.AMQP_EXCHANGE_TYPE || 'fanout',
-        durable: boolify('AMQP_EXCHANGE_DURABLE', false),
-        autoDelete: boolify('AMQP_EXCHANGE_AUTODELETE', false)
+        options: {
+            durable: boolify('AMQP_EXCHANGE_DURABLE', false),
+            autoDelete: boolify('AMQP_EXCHANGE_AUTODELETE', false)
+        }
     },
 
     consumption: {

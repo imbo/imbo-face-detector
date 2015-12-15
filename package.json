@@ -15,7 +15,7 @@
   "main": "bin/consumer.js",
   "scripts": {
     "start": "./bin/consumer.js",
-    "pretest": "npm run lint",
+    "posttest": "npm run lint",
     "test": "istanbul cover _mocha",
     "lint": "eslint .",
     "docker:build": "docker build -t imbo/face-detector .",
@@ -26,7 +26,8 @@
     "url": "git+ssh://git@github.com/imbo/imbo-face-detector.git"
   },
   "bin": {
-    "imbo-face-detector": "./bin/consumer.js"
+    "imbo-face-detector": "./bin/consumer.js",
+    "imbo-face-publish": "./bin/publish.js"
   },
   "keywords": [
     "imbo",
@@ -39,15 +40,19 @@
     "eslint": "^1.6.0",
     "eslint-config-vaffel": "^2.0.0",
     "istanbul": "^0.4.0",
-    "mocha": "^2.3.3"
+    "mocha": "^2.3.3",
+    "proxyquire": "^1.7.3"
   },
   "dependencies": {
-    "amqplib": "^0.4.0",
     "bunyan": "^1.5.1",
-    "imboclient": "^3.0.0",
+    "gleipnir": "^1.1.0",
+    "imboclient": "^3.2.0",
+    "lodash.intersection": "^3.2.0",
     "lodash.merge": "^3.3.2",
+    "lodash.partial": "^3.1.1",
     "lodash.uniq": "^3.2.2",
+    "lodash.without": "^3.2.1",
     "minimist": "^1.2.0",
-    "opencv": "^3.2.0"
+    "opencv": "^4.0.0"
   }
 }
