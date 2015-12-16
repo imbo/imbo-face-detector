@@ -64,16 +64,24 @@ function connectToAmqp(img) {
 }
 
 function publishMessage(img) {
+    var msg = JSON.stringify({
+        eventName: argv.event || 'images.post',
+        image: merge({
+            user: user,
+            identifier: identifier
+        }, img)
+    });
+
+    logger.trace(
+        'Publishing image to exchange `' + config.exchange.name + '`, ' +
+        'routing key: `' + config.queue.routingKey + '`. Content: ' +
+        msg
+    );
+
     channel.publish(
         config.exchange.name,
         config.queue.routingKey,
-        new Buffer(JSON.stringify({
-            eventName: argv.event || 'images.post',
-            image: merge({
-                user: user,
-                identifier: identifier
-            }, img)
-        })),
+        new Buffer(msg),
         { durable: true }
     );
 }
