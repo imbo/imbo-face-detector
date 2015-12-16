@@ -17,7 +17,7 @@ VOLUME /root/.npm
 
 # Install deps
 ADD package.json /app/package.json
-RUN cd /app && npm install
+RUN cd /app && npm install --production
 
 # Copy the entire application into the build container
 COPY . /app
